@@ -1,4 +1,4 @@
-// src/components/Header.jsx
+
 import { AppBar, Toolbar, Button, Typography } from "@mui/material";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
