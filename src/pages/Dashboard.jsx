@@ -18,8 +18,7 @@ const Dashboard = () => {
   React.useEffect(() => {
     axios
       .get("https://jsonplaceholder.typicode.com/posts?_limit=12")
-      .then((res) => setPosts(res.data))
-      .catch(console.error);
+      .then((res) => setPosts(res.data));
   }, []);
 
   const handleCreateUpdate = (post) => {
@@ -28,12 +27,10 @@ const Dashboard = () => {
         prev.map((p) => (p.id === post.id ? post : p))
       );
     } else {
-      const newPost = {
-        ...post,
-        id: Date.now(),
-        userId: 1,
-      };
-      setPosts((prev) => [newPost, ...prev]);
+      setPosts((prev) => [
+        { ...post, id: Date.now(), userId: 1 },
+        ...prev,
+      ]);
     }
     setEditPost(null);
   };
@@ -43,73 +40,103 @@ const Dashboard = () => {
   };
 
   return (
-    <Box sx={{ minHeight: "100vh", px: { xs: 2, md: 6 }, py: 4 }}>
-      <Typography variant="h4" gutterBottom textAlign="center">
+    <Box
+      sx={{
+        minHeight: "100vh",
+        background: "linear-gradient(180deg, #f9fafb, #ffffff)",
+        px: { xs: 2, md: 6 },
+        py: 4,
+      }}
+    >
+      <Typography
+        variant="h4"
+        fontWeight={700}
+        textAlign="center"
+        gutterBottom
+      >
         Dashboard
       </Typography>
 
-      {/* Create / Edit Form */}
       <PostForm onSubmit={handleCreateUpdate} editPost={editPost} />
 
-      {/* Blog Grid (same as Home) */}
-      <Box
-        sx={{
-          mt: 4,
-          width: "100%",
-          display: "grid",
-          gridTemplateColumns:
-            "repeat(auto-fill, minmax(min(260px, 100%), 1fr))",
-          gap: 3,
-        }}
-      >
-        {posts.map((post) => (
-          <Card key={post.id} sx={{ height: "100%" }}>
-            <CardActionArea
+      <Box sx={{ maxWidth: 1200, mx: "auto", mt: 4 }}>
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns:
+              "repeat(auto-fill, minmax(min(260px, 100%), 1fr))",
+            gap: 3,
+          }}
+        >
+          {posts.map((post) => (
+            <Card
+              key={post.id}
               sx={{
                 height: "100%",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "stretch",
+                borderRadius: 3,
+                boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
+                transition: "all 0.25s ease",
+                "&:hover": {
+                  transform: "translateY(-6px)",
+                  boxShadow: "0 12px 28px rgba(0,0,0,0.15)",
+                },
               }}
             >
-              <CardContent sx={{ flexGrow: 1 }}>
-                <Typography variant="h6" gutterBottom>
-                  {post.title}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {post.body}
-                </Typography>
-              </CardContent>
-
-              {/* Actions */}
-              <Box
+              <CardActionArea
                 sx={{
-                  p: 2,
-                  pt: 0,
+                  height: "100%",
                   display: "flex",
-                  gap: 1,
+                  flexDirection: "column",
                 }}
               >
-                <Button
-                  size="small"
-                  variant="outlined"
-                  onClick={() => setEditPost(post)}
-                >
-                  Edit
-                </Button>
+                <CardContent sx={{ flexGrow: 1 }}>
+                  <Typography
+                    variant="h6"
+                    fontWeight={600}
+                    gutterBottom
+                  >
+                    {post.title}
+                  </Typography>
 
-                <Button
-                  size="small"
-                  variant="outlined"
-                  color="error"
-                  onClick={() => handleDelete(post.id)}
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{ lineHeight: 1.6 }}
+                  >
+                    {post.body}
+                  </Typography>
+                </CardContent>
+
+                <Box
+                  sx={{
+                    p: 2,
+                    pt: 0,
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    gap: 1,
+                  }}
                 >
-                  Delete
-                </Button>
-              </Box>
-            </CardActionArea>
-          </Card>
-        ))}
+                  <Button
+                    size="small"
+                    variant="outlined"
+                    onClick={() => setEditPost(post)}
+                  >
+                    Edit
+                  </Button>
+
+                  <Button
+                    size="small"
+                    variant="outlined"
+                    color="error"
+                    onClick={() => handleDelete(post.id)}
+                  >
+                    Delete
+                  </Button>
+                </Box>
+              </CardActionArea>
+            </Card>
+          ))}
+        </Box>
       </Box>
     </Box>
   );
