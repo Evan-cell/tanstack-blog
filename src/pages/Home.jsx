@@ -24,7 +24,7 @@ const Home = () => {
   return (
     <Box sx={{ p: 4, maxWidth: 1200, mx: "auto" }}>
       <Typography variant="h3" textAlign="center" fontWeight={700} mb={4}>
-        Simple Blog
+        Your Daily Blog
       </Typography>
 
       <Box

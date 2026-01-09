@@ -19,8 +19,8 @@ import {
     return (
       <AppBar position="sticky" color="inherit" elevation={1}>
         <Toolbar>
-          <Typography fontWeight={700} sx={{ flexGrow: 1 }}>
-            Simple Blog
+          <Typography fontWeight={700} sx={{ flexGrow: 1, cursor:'pointer' }} onClick={() => navigate("/")}>
+            Blog
           </Typography>
   
           <IconButton onClick={toggleTheme}>

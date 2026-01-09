@@ -1,21 +1,22 @@
 // src/pages/Dashboard.jsx
-import * as React from "react";
-import {
-  Box,
-  Typography,
-  Card,
-  CardContent,
-  CardActionArea,
-  Button,
-} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import PostForm from "../components/PostForm";
+import BlogCard from "../components/BlogCard";
+import { useAuth } from "../context/AuthContext";
 
 const Dashboard = () => {
-  const [posts, setPosts] = React.useState([]);
-  const [editPost, setEditPost] = React.useState(null);
+  const [posts, setPosts] = useState([]);
+  const [editPost, setEditPost] = useState(null);
+  const { user } = useAuth();
 
-  React.useEffect(() => {
+  const requireAuth = (action) => {
+    if (!user) return alert("Please login first!");
+    action();
+  };
+
+  useEffect(() => {
     axios
       .get("https://jsonplaceholder.typicode.com/posts?_limit=12")
       .then((res) => setPosts(res.data));
@@ -23,14 +24,9 @@ const Dashboard = () => {
 
   const handleCreateUpdate = (post) => {
     if (post.id) {
-      setPosts((prev) =>
-        prev.map((p) => (p.id === post.id ? post : p))
-      );
+      setPosts((prev) => prev.map((p) => (p.id === post.id ? post : p)));
     } else {
-      setPosts((prev) => [
-        { ...post, id: Date.now(), userId: 1 },
-        ...prev,
-      ]);
+      setPosts((prev) => [{ ...post, id: Date.now(), userId: 1 }, ...prev]);
     }
     setEditPost(null);
   };
@@ -43,17 +39,12 @@ const Dashboard = () => {
     <Box
       sx={{
         minHeight: "100vh",
-        background: "linear-gradient(180deg, #f9fafb, #ffffff)",
+        background: "background.default",
         px: { xs: 2, md: 6 },
         py: 4,
       }}
     >
-      <Typography
-        variant="h4"
-        fontWeight={700}
-        textAlign="center"
-        gutterBottom
-      >
+      <Typography variant="h4" fontWeight={700} textAlign="center" gutterBottom>
         Dashboard
       </Typography>
 
@@ -64,77 +55,18 @@ const Dashboard = () => {
           sx={{
             display: "grid",
             gridTemplateColumns:
-              "repeat(auto-fill, minmax(min(260px, 100%), 1fr))",
+              "repeat(auto-fill, minmax(min(280px, 100%), 1fr))",
             gap: 3,
           }}
         >
           {posts.map((post) => (
-            <Card
+            <BlogCard
               key={post.id}
-              sx={{
-                height: "100%",
-                borderRadius: 3,
-                boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
-                transition: "all 0.25s ease",
-                "&:hover": {
-                  transform: "translateY(-6px)",
-                  boxShadow: "0 12px 28px rgba(0,0,0,0.15)",
-                },
-              }}
-            >
-              <CardActionArea
-                sx={{
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <CardContent sx={{ flexGrow: 1 }}>
-                  <Typography
-                    variant="h6"
-                    fontWeight={600}
-                    gutterBottom
-                  >
-                    {post.title}
-                  </Typography>
-
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    sx={{ lineHeight: 1.6 }}
-                  >
-                    {post.body}
-                  </Typography>
-                </CardContent>
-
-                <Box
-                  sx={{
-                    p: 2,
-                    pt: 0,
-                    display: "flex",
-                    justifyContent: "flex-end",
-                    gap: 1,
-                  }}
-                >
-                  <Button
-                    size="small"
-                    variant="outlined"
-                    onClick={() => setEditPost(post)}
-                  >
-                    Edit
-                  </Button>
-
-                  <Button
-                    size="small"
-                    variant="outlined"
-                    color="error"
-                    onClick={() => handleDelete(post.id)}
-                  >
-                    Delete
-                  </Button>
-                </Box>
-              </CardActionArea>
-            </Card>
+              post={post}
+              requireAuth={requireAuth}
+              onEdit={() => setEditPost(post)}
+              onDelete={() => handleDelete(post.id)}
+            />
           ))}
         </Box>
       </Box>

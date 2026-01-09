@@ -1,10 +1,11 @@
-
-import { Box, TextField, Button } from "@mui/material";
+// src/components/PostForm.jsx
+import { Box, TextField, Button, useTheme } from "@mui/material";
 import { useState, useEffect } from "react";
 
 const PostForm = ({ onSubmit, editPost }) => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const theme = useTheme(); // use current theme for colors
 
   useEffect(() => {
     if (editPost) {
@@ -21,7 +22,17 @@ const PostForm = ({ onSubmit, editPost }) => {
   };
 
   return (
-    <Box component="form" onSubmit={handleSubmit} sx={{ mb: 3 }}>
+    <Box
+      component="form"
+      onSubmit={handleSubmit}
+      sx={{
+        mb: 3,
+        p: 2,
+        borderRadius: 2,
+        backgroundColor: theme.palette.background.paper,
+        boxShadow: theme.shadows[1],
+      }}
+    >
       <TextField
         label="Title"
         value={title}
