@@ -11,7 +11,7 @@ const Header = () => {
     <AppBar position="static">
       <Toolbar>
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          Simple Blog
+          Blog
         </Typography>
         {user ? (
           <>

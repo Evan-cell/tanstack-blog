@@ -37,7 +37,7 @@ const Login = () => {
           fullWidth
           sx={{ mb: 2 }}
         >
-          <option value="user">User</option>
+          <option value="user">Guest</option>
           <option value="admin">Admin</option>
         </TextField>
         <Button type="submit" variant="contained">
