@@ -1,70 +1,156 @@
-# Getting Started with Create React App
+# 🌟 Daily Blog
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, responsive blogging platform built with **React**, **TanStack Start**, and **Material UI**.  
+Users can create, edit, and delete posts, while admins can manage all posts. Includes **dark mode**, **like/bookmark functionality**, and **tags/categories**.  
 
-## Available Scripts
+![Blog Demo](https://picsum.photos/800/300?random=1)  
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🚀 Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Responsive Grid Layout:** 3–4 cards per row depending on screen size  
+- **Create, Edit & Delete Posts:** Users manage their own posts; Admins manage all posts  
+- **Material UI Cards:** Modern design with hover effects and placeholder images  
+- **Dark & Light Mode Toggle:** Seamless theme switching  
+- **Like & Bookmark UI:** Interact with posts visually  
+- **Tags / Categories:** Each post can have tags displayed  
+- **Delete Confirmation Dialog:** Prevent accidental deletions  
+- **Mock API Integration:** Uses [JSONPlaceholder](https://jsonplaceholder.typicode.com/) for demo data  
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 📦 Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **React 19** (latest features)  
+- **TanStack Start** for routing, loaders, and actions  
+- **Material UI** for styling and components  
+- **React Context API** for authentication and theme management  
+- **Axios** for API requests  
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🖥️ Screenshots
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Home Page (Posts Grid)**  
+![Home Page](https://picsum.photos/800/400?random=2)  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Dashboard (Create/Edit Posts)**  
+![Dashboard](https://picsum.photos/800/400?random=3)  
 
-### `npm run eject`
+**Dark Mode Enabled**  
+![Dark Mode](https://picsum.photos/800/400?random=4)  
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📂 Folder Structure
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+src/
+├── components/
+│ ├── BlogCard.jsx
+│ ├── PostForm.jsx
+│ └── Header.jsx
+├── context/
+│ ├── AuthContext.jsx
+│ └── ThemeContext.jsx
+├── pages/
+│ ├── Home.jsx
+│ └── Dashboard.jsx
+├── App.jsx
+├── index.js
+├── theme.js
+└── index.css
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+yaml
+Copy code
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## ⚡ Getting Started
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 1️⃣ Install Dependencies
 
-### Code Splitting
+```bash
+npm install
+npm install @mui/material @mui/icons-material axios
+2️⃣ Start the Development Server
+bash
+Copy code
+npm start
+Open http://localhost:3000 to view the app.
+The page reloads automatically on changes.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+3️⃣ Available Scripts
+Command	Description
+npm start	Runs the app in development mode
+npm run build	Builds the app for production
+npm test	Launches the test runner in watch mode
+npm run eject	Ejects the project (one-way operation)
 
-### Analyzing the Bundle Size
+🔧 Features in Detail
+📝 Create & Edit Posts
+Users can create posts via the Dashboard
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Editing updates the post immediately
 
-### Making a Progressive Web App
+💾 Delete Confirmation
+Posts show a confirmation dialog before deletion
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+🌙 Dark / Light Mode
+Toggle themes from the header
 
-### Advanced Configuration
+Forms, cards, and backgrounds adapt automatically
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+❤️ Like & Bookmark
+Toggle post interactions visually without backend
 
-### Deployment
+🏷️ Tags / Categories
+Posts display tags like Tech, AI, or Web
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+🌐 API
+This project uses JSONPlaceholder as a mock backend:
 
-### `npm run build` fails to minify
+bash
+Copy code
+GET https://jsonplaceholder.typicode.com/posts?_limit=12
+Returns posts with id, title, body, and userId
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Allows testing of create, edit, and delete features
+
+📚 Learn More
+React Documentation
+
+Material UI Documentation
+
+JSONPlaceholder
+
+TanStack React Router
+
+👨‍💻 Author
+Evan Kimani – Full-Stack Developer & Innovator
+
+GitHub
+
+Portfolio
+
+LinkedIn
+
+yaml
+Copy code
+
+---
+
+✅ **Instructions to use in VS Code:**
+
+1. Open your project folder in VS Code.  
+2. Create a file at the root of your project:  
+
+DailyBlog/
+├── README.md ← paste this content here
+├── src/
+└── package.json
+
+yaml
+Copy code
+
+
